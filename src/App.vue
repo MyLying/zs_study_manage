@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
-    <h1>LYING</h1>
-    <h4>TEST</h4>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -9,5 +8,5 @@
 export default {};
 </script>
 
-<style>
+<style lang="less">
 </style>
