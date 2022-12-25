@@ -1,6 +1,6 @@
 <template>
-  <div class="test-container">
-    <h1>TEST</h1>
+  <div class="info-container">
+    <router-view></router-view>
   </div>
 </template>
 

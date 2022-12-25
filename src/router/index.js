@@ -2,15 +2,28 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/views/home/home.vue";
 import Main from "@/views/main/main.vue";
+import Info from "@/views/info/info.vue";
+import AdminInfo from "@/views/info/adminInfo.vue";
+import StuInfo from "@/views/info/stuInfo.vue";
+import UserInfo from "@/views/info/userInfo.vue";
 import Login from "@/views/login.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/", component: Home, name: "Home", children: [
-      { path: '/', component: Main },
-      { path: 'main', component: Main },
+    path: '/', redirect: "/home"
+  },
+  {
+    path: "/home", component: Home, redirect: "home/main", meta: { title: "首页" }, children: [
+      { path: 'main', name: "Main", component: Main, meta: { title: "首页" } },
+      {
+        path: 'info', name: "Info", redirect: "info/userInfo", component: Info, meta: { title: "用户信息管理" }, children: [
+          { path: 'userInfo', name: "userInfo", component: UserInfo, meta: { title: "个人中心" } },
+          { path: 'adminInfo', name: "adminInfo", component: AdminInfo, meta: { title: "管理员信息" } },
+          { path: 'stuInfo', name: "stuInfo", component: StuInfo, meta: { title: "学生信息" } }
+        ]
+      },
     ]
   },
   { path: "/login", component: Login, name: "Login" },
