@@ -5,6 +5,9 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
+
 Vue.config.productionTip = false
 
 new Vue({

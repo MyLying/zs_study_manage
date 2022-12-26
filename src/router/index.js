@@ -23,6 +23,24 @@ const routes = [
           { path: 'adminInfo', name: "adminInfo", component: AdminInfo, meta: { title: "管理员信息" } },
           { path: 'stuInfo', name: "stuInfo", component: StuInfo, meta: { title: "学生信息" } }
         ]
+      }, {
+        path: 'room', name: "Room", redirect: "room/room1", component: Info, meta: { title: "自习室信息管理" }, children: [
+          { path: 'room1', name: "room1", component: UserInfo, meta: { title: "自习室一" } },
+          { path: 'room2', name: "room2", component: AdminInfo, meta: { title: "自习室二" } },
+          { path: 'room3', name: "room3", component: StuInfo, meta: { title: "自习室三" } }
+        ]
+      }, {
+        path: 'notice', name: "Notice", redirect: "notice/notice1", component: Info, meta: { title: "通知信息管理" }, children: [
+          { path: 'notice1', name: "notice1", component: UserInfo, meta: { title: "通知一" } },
+          { path: 'notice2', name: "notice2", component: AdminInfo, meta: { title: "通知二" } },
+          { path: 'notice3', name: "notice3", component: StuInfo, meta: { title: "通知三" } }
+        ]
+      }, , {
+        path: 'duty', name: "Duty", redirect: "duty/duty1", component: Info, meta: { title: "值班信息管理" }, children: [
+          { path: 'duty1', name: "duty1", component: UserInfo, meta: { title: "值班一" } },
+          { path: 'duty2', name: "duty2", component: AdminInfo, meta: { title: "值班二" } },
+          { path: 'duty3', name: "duty3", component: StuInfo, meta: { title: "值班三" } }
+        ]
       },
     ]
   },
