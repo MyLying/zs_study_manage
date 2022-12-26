@@ -1,6 +1,6 @@
 <template>
   <div class="adminInfo-container">
-    <h1>AdminInfo</h1>
+    <h1 style="margin: 0">AdminInfo</h1>
   </div>
 </template>
 

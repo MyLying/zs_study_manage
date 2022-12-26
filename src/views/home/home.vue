@@ -4,7 +4,7 @@
       <transition>
         <el-aside :width="asideWidth + 'px'">
           <el-menu
-            default-active="/home/main"
+            default-active="/home"
             class="el-menu-vertical-demo"
             :unique-opened="true"
             :collapse="isCollapse"
@@ -16,17 +16,40 @@
               :src="userInfo.userAccountUrl"
               fit="cover"
             ></el-image>
-            <h3 v-if="!isCollapse" id="userName" style="margin: 0">
-              {{ userInfo.userName }}
-            </h3>
-            <h3 v-else id="userName" style="margin: 0">
-              {{ userInfo.userName.slice(0, 1) }}
-            </h3>
+            <br />
+            <el-dropdown @command="handleCommand" style="margin-top: 10px">
+              <!-- <el-avatar
+                  src="https://avatars.githubusercontent.com/u/82797903"
+                ></el-avatar> -->
+              <div>
+                <h3 v-if="!isCollapse" id="userName" style="margin: 0">
+                  <i class="el-icon-user-solid"></i>
+                  {{ userInfo.userName }}
+                  <i class="el-icon-arrow-down"></i>
+                </h3>
+                <h3 v-else id="userName" style="margin: 0">
+                  {{ userInfo.userName.slice(0, 1) }}
+                </h3>
+              </div>
+
+              <el-dropdown-menu
+                slot="dropdown"
+                style="width: 120px; text-align: center"
+              >
+                <el-dropdown-item icon="el-icon-plus" command="userInfo"
+                  >个人中心</el-dropdown-item
+                >
+                <el-dropdown-item icon="el-icon-plus" command="login" divided
+                  >退出登录</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </el-dropdown>
+
             <h4 v-if="!isCollapse" id="UserType" style="margin: 0">
               {{ userInfo.userType }}
             </h4>
             <hr />
-            <el-menu-item index="/home/main" style="text-align: left">
+            <el-menu-item index="/home" style="text-align: left">
               <i v-if="isCollapse" class="el-icon-s-home"></i>
               <span slot="title">首页</span>
             </el-menu-item>
@@ -92,31 +115,16 @@
             ><i v-if="isCollapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i
           ></el-button>
-          <el-dropdown
-            @command="handleCommand"
-            style="margin-top: 10px; float: right"
+          <div
+            style="
+              text-align: left;
+              position: relative;
+              left: 80px;
+              top: -50px;
+              height: 60px;
+              line-height: 60px;
+            "
           >
-            <span class="el-dropdown-link">
-              <el-avatar
-                src="https://avatars.githubusercontent.com/u/82797903"
-              ></el-avatar>
-            </span>
-            <el-dropdown-menu
-              slot="dropdown"
-              style="width: 120px; text-align: center"
-            >
-              <el-dropdown-item icon="el-icon-plus" command="userInfo"
-                >个人中心</el-dropdown-item
-              >
-              <el-dropdown-item icon="el-icon-plus" command="login" divided
-                >退出登录</el-dropdown-item
-              >
-            </el-dropdown-menu>
-          </el-dropdown>
-        </el-header>
-        <el-main>
-          <!-- <router-link v-for="(item, index) in breadList" :key="index">sdsd </router-link> -->
-          <div style="text-align: left">
             <span
               class="bread"
               v-for="(item, index) in breadList"
@@ -130,7 +138,8 @@
               }}{{ index == breadList.length - 1 ? "" : " > " }}</span
             >
           </div>
-          <hr />
+        </el-header>
+        <el-main>
           <router-view></router-view>
         </el-main>
         <el-footer height="40px">
@@ -223,12 +232,24 @@ export default {
     background-color: #d3dce6;
     color: #333;
     // text-align: center;
+    .bread {
+      display: inline-block;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      text-align: left;
+    }
+    .bread:hover {
+      color: #32d4c4;
+    }
   }
   .el-footer {
     background-color: #d3dce6;
     color: #333;
     text-align: center;
     line-height: 40px;
+    font-size: 12px;
   }
 
   .el-aside {
@@ -245,18 +266,7 @@ export default {
     padding: 5px;
     // background-color: #32d4c4;
     color: #333;
-    text-align: center;
-    .bread {
-      display: inline-block;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      text-align: left;
-    }
-    .bread:hover {
-      color: #32d4c4;
-    }
+    // text-align: center;
   }
 }
 </style>

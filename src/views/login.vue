@@ -84,10 +84,10 @@ export default {
   data() {
     return {
       imgSrc: require("@/assets/logo.png"),
-      vcUrl: "/vhr/verifyCode?time=" + new Date(),
+      vcUrl: "http://jw.cqcst.edu.cn/cqdxcskjxy/verifycode.servlet",
       loginForm: {
         userName: "admin",
-        passWord: "123",
+        passWord: "Lying_1120",
         code: "",
       },
       checked: true,
@@ -103,7 +103,9 @@ export default {
   methods: {
     //点击图片更新验证码
     updateVerifyCode() {
-      this.vcUrl = "/vhr/verifyCode?time=" + new Date();
+      this.vcUrl =
+        "http://jw.cqcst.edu.cn/cqdxcskjxy/verifycode.servlet?t=" +
+        Math.random();
     },
     submitLogin() {
       this.$refs.loginForm.validate((valid) => {
